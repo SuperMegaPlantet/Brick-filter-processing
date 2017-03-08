@@ -4,15 +4,18 @@ import java.util.Calendar;
 boolean savePDF = false;
 
 PImage img;
-float resize=0.8;//resize input image with scale, control resolution
+float resize=0.035;//resize input image with scale, control resolution
 int w,h;//input image width and height 
-int scale=10;//set draw pixel size
+int scale=30;//set draw pixel size
 int brick01=0;//brick grayscale: 255
 int brick02=0;//brick grayscale: 175
 int brick03=0;//brick grayscale: 125
 int brick04=0;//brick grayscale: 75
 int brick05=0;//brick grayscale: 25
-
+//grayscale RGB weight
+float redWeight=0.222;
+float greenWeight=0.707;
+float blueWeight=0.071;
 
 void setup(){
   img=loadImage("pic.png") ;//pic.png
@@ -43,7 +46,7 @@ void draw(){
       // get current color
       color c = img.pixels[gridY*img.width+gridX];
       // greyscale conversion
-      int greyscale =round(red(c)*0.222+green(c)*0.707+blue(c)*0.071);
+      int greyscale =round(red(c)*redWeight+green(c)*greenWeight+blue(c)*blueWeight);//r-0.222,g-0.707,b-0.071
       
       //set brick color by thresholding
        int brickColor;
@@ -99,7 +102,7 @@ void brickNum(){
        // get current color
        color c = img.pixels[gridY*img.width+gridX];
        // greyscale conversion
-       int greyscale =round(red(c)*0.222+green(c)*0.707+blue(c)*0.071);
+       int greyscale =round(red(c)*redWeight+green(c)*greenWeight+blue(c)*blueWeight);
        if(greyscale>200){
          brick01+=1; 
         }else if(greyscale>150&&greyscale<=200){
