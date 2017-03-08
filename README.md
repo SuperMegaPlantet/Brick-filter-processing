@@ -1,8 +1,12 @@
 # Brick-filter-processing
+
+processing2.2.1
+
+
 将人像转化为像素/积木块的滤镜
 ###应用情景
 将证件照大小的人像照转化为灰度像素图（5色），可调整像素/积木数量。像素/积木数量越少，图像越粗糙。生成
-生成像素图，积木图纸后，会计算相应积木的总数。
+生成像素图/积木图纸后，会计算不同颜色积木的总数。
 
 
 原图
@@ -15,7 +19,14 @@
 
 
 ![output](https://github.com/SuperMegaPlantet/Brick-filter-processing/blob/readme-edit/data/170307_140501_78.png)
+
+
+调整积木数量
+![resize](https://github.com/SuperMegaPlantet/Brick-filter-processing/blob/readme-edit/data/resize.jpg)
+
 ###算法
+
+
 1.重设原图大小
 将原图缩小至X倍 （例如：0.8倍）
 缩小后得到的尺寸乘积，将是积木块总数。
@@ -27,7 +38,9 @@
     gray=red*0.222+green*0.707+blue*0.071
     
   RGB转换为灰度的权重值可以自由更改。
+  
 
+ 
 3.将灰度转化为预设好的5种颜色，并画出相应的像素块/积木块
 灰度图含有5个颜色，代表5种积木，像素灰度如下：
 
@@ -54,8 +67,15 @@
 
 ###可调整的参数
 - resize: 控制原图的缩放比例，以及积木块总数
-- scale: 输出图的像素块/积木块尺寸设置 nxn  其中n的单位为像素
+- scale: 输出图的像素块/积木块尺寸设置 nxn ，n的单位为像素
+- redWeight/greenWeight/blueWeight: 灰度转化的RGB权重
 
+
+ 
+ 调整RGB权重后，5个积木块的数量将会改变
+ 
+ ![weight](https://github.com/SuperMegaPlantet/Brick-filter-processing/blob/readme-edit/data/RGBweight.jpg)
+ 
 ###打印的数据
 
 ```
